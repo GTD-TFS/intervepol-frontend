@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IN•POL — INTERVE•POL</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div style="width:28px;height:28px;border-radius:6px;background:#0d1a33;border:1px solid #30446f;box-shadow:inset 0 0 0 1px #0008, 0 0 12px #0008"></div>
+      <h1>IN•POL — INTERVE•POL</h1>
+    </div>
+    <div class="pill" title="Estado IA">
+      <span id="iaDot" class="dot bad"></span>
+      <span id="iaText">IA no disponible — modo manual</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="row" style="justify-content:space-between">
+        <h2 class="title">Filiaciones</h2>
+        <div class="row">
+          <button id="btnAddPerson" class="btn primary">➕ Añadir persona</button>
+          <label class="chip"><input type="checkbox" id="cfgExtra" style="width:auto"> Campos adicionales</label>
+        </div>
+      </div>
+      <div id="persons"></div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <input id="importFile" type="file" accept=".json,application/json" class="hidden">
+        <button id="btnImport" class="btn">📥 Importar JSON</button>
+        <span class="muted small">Importa una intervención guardada previamente.</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="title">Actuación</h2>
+      <textarea id="actuacion"></textarea>
+      <div class="divider"></div>
+      <div class="row">
+        <button id="btnSave" class="btn good">💾 Guardar intervención</button>
+        <button id="btnClear" class="btn bad">🧹 Limpiar</button>
+        <span id="status" class="muted small right"></span>
+      </div>
+      <div class="divider"></div>
+      <div class="cfg muted">
+        <strong>Configuración rápida</strong>
+        <div class="row small">
+          <span class="chip">Región IA: europe-west1</span>
+          <span class="chip">Idioma: Español</span>
+          <span class="chip">Offline-first</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="title">Objetos y Drogas</h2>
+      <div class="grid2">
+        <div class="field">
+          <label>Objetos (uno por línea)</label>
+          <textarea id="objetos"></textarea>
+        </div>
+        <div class="field">
+          <label>Drogas (uno por línea)</label>
+          <textarea id="drogas" readonly></textarea>
+          <div id="drogasList" class="row" style="gap:6px; margin-top:6px; flex-wrap:wrap"></div>
+          <div class="row" style="margin-top:6px">
+            <button id="btnDrogasModal" class="btn">➕ Añadir con asistente</button>
+            <span class="muted small">Edición manual deshabilitada: añadir siempre con el asistente. Puedes eliminar elementos abajo.</span>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <span class="muted small">Se exportarán como listas: <code>objects</code> y <code>drugs</code>.</span>
+    </section>
+    <section class="card">
+      <h2 class="title">IA</h2>
+      <div class="row" style="gap:8px; flex-wrap:wrap">
+        <button id="iaCfgBtn" class="btn">⚙️ Configurar Google</button>
+        <button id="iaOcrBtn" class="btn">📷 OCR (imagen)</button>
+        <button id="iaSttBtn" class="btn">🎙️ Voz → Texto</button>
+        <button id="iaWriteBtn" class="btn">📝 Redacción policial</button>
+        <span id="iaStatus" class="muted small">Sin configurar</span>
+      </div>
+      <input id="iaImageInput" type="file" accept="image/*,.heic,.HEIC,image/heic,image/heif" class="hidden">
+      <input id="iaAudioInput" type="file" accept="audio/*" class="hidden">
+    </section>
+  </main>
+
+  <!-- JS (orden importante) -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any/dist/heic2any.min.js"></script>
+  <script src="js/inpol.util.js"></script>
+  <script src="js/inpol.state.js"></script>
+  <script src="js/inpol.ui.js"></script>
+  <script src="js/inpol.io.js"></script>
+  <script src="js/inpol.drogas.js"></script>
+  <script src="js/inpol.main.js"></script>
+</body>
+</html>
